@@ -1,0 +1,21 @@
+/* Login.css */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  div {
+    display: flex;
+    justify-content: center;  /* center horizontally */
+    align-items: flex-start;  /* align to top */
+    height: 100vh;
+    padding-top: 40px; /* space from top */
+  }
+  
+  h1 {
+    margin: 0;
+    font-size: 2rem;
+  }
+  

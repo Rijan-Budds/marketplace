@@ -77,7 +77,7 @@ export default function Register() {
             {successMessage && <p className='success-message'>{successMessage}</p>}
 
             <button type='submit' className='submit-button'>Register</button>
-            <button type="button" onClick={() => navigate("/")}>Already have an account?</button>
+            <button type="button" onClick={() => navigate("/login")}>Already have an account?</button>
         </form>
     );
 }

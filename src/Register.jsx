@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Register.css';
 
 export default function Register() {
     const navigate = useNavigate();
@@ -39,6 +40,7 @@ export default function Register() {
                     type="email"
                     id='email'
                     name='email'
+                    placeholder='Email'
                     value={formData.email}
                     onChange={handleChange}
                     required
@@ -51,6 +53,7 @@ export default function Register() {
                     type="password" 
                     id='password'
                     name='password'
+                    placeholder='Password'
                     value={formData.password}
                     onChange={handleChange}
                     required
@@ -63,6 +66,7 @@ export default function Register() {
                     type="password"
                     id='confirmPassword' 
                     name='confirmPassword'
+                    placeholder='Confirm Password'
                     value={formData.confirmPassword}
                     onChange={handleChange}
                     required

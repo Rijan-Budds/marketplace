@@ -55,6 +55,7 @@ export default function Login() {
           required
         />
         <button type="submit">Login</button>
+        <button type='button' onClick={() => navigate("/register")}>Register?</button>
       </form>
     </div>
   );  

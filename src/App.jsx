@@ -3,10 +3,11 @@ import Login from './Login';
 import Dashboard from './Dashboard';
 import Register from './Register';
 import Home from './Home';
+import Marketplace from './Marketplace';
 
 // PrivateRoute component (can stay in this file for now)
 const PrivateRoute = ({ children }) => {
-  const isAuth = !!localStorage.getItem('token'); // replace with real auth check later
+  const isAuth = !!localStorage.getItem('token'); 
   return isAuth ? children : <Navigate to="/login" />;
 };
 
@@ -14,11 +15,11 @@ function App() {
   return (
     <Router>
       <Routes>
+      <Route path='/marketplace' element={<Marketplace />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<Home />} />
 
-        {/* Protected Route */}
         <Route 
           path="/dashboard" 
           element={

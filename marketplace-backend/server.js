@@ -16,15 +16,22 @@ const db = new sqlite3.Database('./database.sqlite');
 
 db.serialize(() => {
   db.run("CREATE TABLE IF NOT EXISTS users (email TEXT UNIQUE, password TEXT)");
-  db.get("SELECT * FROM users WHERE email = ?", ["test@example.com"], (err, row) => {
-    if (!row) {
-      db.run("INSERT INTO users (email, password) VALUES (?, ?)", [
-        "test@example.com",
-        "password123"
-      ]);
-    }
+
+  const users = [
+    { email: "rijan1@rijan.com", password: "rijan123" },
+    { email: "rijan2@rijan.com", password: "rijan123" },
+    { email: "rijan3@rijan.com", password: "rijan123" },
+  ];
+
+  users.forEach(({ email, password }) => {
+    db.get("SELECT * FROM users WHERE email = ?", [email], (err, row) => {
+      if (!row) {
+        db.run("INSERT INTO users (email, password) VALUES (?, ?)", [email, password]);
+      }
+    });
   });
 });
+
 
 app.post("/login", (req, res) => {
   const { email, password } = req.body;

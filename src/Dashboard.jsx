@@ -14,7 +14,11 @@ export default function Dashboard() {
 
       <div className="dashboard-container">
         <h1>this will be the marketplace main page</h1>
-        <button className="logout-button" onClick={() => navigate("/")}>Logout</button>
+        <button className="logout-button" onClick={() => {
+         localStorage.removeItem("token");
+        navigate("/");
+       }}>Logout</button>
+
       </div>
     </div>
   );

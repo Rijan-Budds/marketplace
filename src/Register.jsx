@@ -21,16 +21,43 @@ export default function Register() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+      
         if (formData.password !== formData.confirmPassword) {
-            setErrorMessage('Passwords do not match.');
-            setSuccessMessage('');
-        } else {
-            setErrorMessage('');
-            setSuccessMessage('Account registered successfully');
+          setErrorMessage('Passwords do not match.');
+          setSuccessMessage('');
+          return;
         }
-    };
+      
+        try {
+          const res = await fetch("http://localhost:3001/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: formData.email,
+              password: formData.password
+            }),
+          });
+      
+          const data = await res.json();
+      
+          if (res.ok) {
+            setSuccessMessage(data.message);
+            setErrorMessage('');
+            setTimeout(() => {
+              navigate("/login");
+            }, 1000);
+          } else {
+            setErrorMessage(data.message);
+            setSuccessMessage('');
+          }
+        } catch (err) {
+          setErrorMessage("Something went wrong");
+          setSuccessMessage('');
+        }
+      };
+      
 
     return (
         <form className='form-container' onSubmit={handleSubmit}>
